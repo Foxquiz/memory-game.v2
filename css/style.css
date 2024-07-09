@@ -1,0 +1,246 @@
+.body {
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.buttons__container {
+  position: relative;
+}
+
+.timer {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 30px;
+}
+
+#game {
+  position: relative;
+}
+
+.card-list {
+  gap: 10px;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.cardGame {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  max-width: 300px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: gray;
+  font-size: 0;
+  color: white;
+  --bgcolor-openCard: blue;
+  cursor: pointer;
+  overflow: hidden;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  animation: 0.3s flipOutY reverse 1;
+}
+
+.card-img {
+  height: calc(100% + 20px);
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+
+.card-icon {
+  height: 100%;
+  width: 95%;
+  -o-object-fit: contain;
+  object-fit: contain;
+  background-color: #fff;
+}
+
+.card-img--error {
+  -o-object-fit: contain;
+  object-fit: contain;
+  width: 20%;
+}
+
+.cardGame--open:has(.card-img--error) {
+  border: 1px solid red;
+  background-color: #fff;
+}
+
+.cardGame--open:has(.card-icon):not(.cardGame--success) {
+  -webkit-box-shadow: 0 0 10px 2px gray;
+  box-shadow: 0 0 10px 2px gray;
+  background-color: #fff;
+}
+
+.cardGame--open:has(.card-icon) {
+  background-color: #fff;
+}
+
+.card-fox {
+  background-image: url(../img/fox.jpg);
+  background-size: cover;
+  background-position: center;
+  --bgcolor-openCard: #ff8e00;
+}
+
+.card-cars {
+  background-image: url(../img/car.jpg);
+  background-size: cover;
+  background-position: center;
+  --bgcolor-openCard: #B00000;
+}
+
+.cardGame--open {
+  font-size: 55px;
+  background-image: none;
+  background-color: var(--bgcolor-openCard);
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -webkit-animation: 0.3s flipInY ease-in-out 1;
+  animation: 0.3s flipInY ease-in-out 1;
+}
+
+.cardGame--success {
+  font-size: 55px;
+  -webkit-box-shadow: 0 0 10px 2px #1da533;
+  box-shadow: 0 0 10px 2px #1da533;
+  background-color: #1da533;
+  -webkit-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -o-transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  -webkit-animation: 0.3s flipInY ease-in-out 1;
+  animation: 0.3s flipInY ease-in-out 1;
+}
+
+@media (max-width: 1200px) {
+  .card-list {
+    gap: 5px;
+  }
+
+  .cardGame {
+    font-size: 50px;
+  }
+
+  .game-options {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .input-group-text {
+    white-space: wrap;
+  }
+
+  .select-text__card-img {
+    min-width: 150px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .cardGame {
+    border-radius: 5px;
+    font-size: 30px;
+  }
+
+  .input-group {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  .input-group>.form-control,
+  .input-group>.form-floating,
+  .input-group>.form-select {
+    width: 100%;
+  }
+
+  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback),
+  .input-group:not(.has-validation)>.dropdown-toggle:nth-last-child(n+3),
+  .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-control,
+  .input-group:not(.has-validation)>.form-floating:not(:last-child)>.form-select,
+  .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu):not(.form-floating) {
+    border-radius: var(--bs-border-radius);
+  }
+}
+
+@-webkit-keyframes flipInY {
+  0% {
+    -webkit-transform: perspective(400px) rotateY(90deg);
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flipInY {
+  0% {
+    -webkit-transform: perspective(400px) rotateY(90deg);
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes flipOutY {
+  0% {
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateY(90deg);
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipOutY {
+  0% {
+    -webkit-transform: perspective(400px) rotateY(0deg);
+    transform: perspective(400px) rotateY(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: perspective(400px) rotateY(90deg);
+    transform: perspective(400px) rotateY(90deg);
+    opacity: 0;
+  }
+}
