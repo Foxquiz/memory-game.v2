@@ -9,7 +9,10 @@ function createNumbersArray(cardQty) {
 
 //возврат перемешанного массива
 export function createShuffledArray(cardQty) {
-  return createNumbersArray(cardQty).sort(function(){
-    return Math.random() - 0.5;
-  });
+  const  newArr = [...createNumbersArray(cardQty)];
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const  j = Math.floor(Math.random() * (i + 1));
+    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+  }
+  return newArr;
 };
